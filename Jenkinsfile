@@ -21,14 +21,10 @@ pipeline {
         }
         stage('Deliver') {
             agent any
-            environment {
-                VOLUME = '$(pwd)/sources:/src'
-                IMAGE = 'cdrx/pyinstaller-linux'
-            }
             steps {
                 dir(path: env.BUILD_ID) {
                     unstash(name: 'compiled-results')
-                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F prog.py'"
+                    sh 'pyinstaller -F prog.py'
                 }
             }
             post {
