@@ -22,6 +22,7 @@ pipeline {
                 dir(path: env.BUILD_ID) {
                     unstash(name: 'compiled-results')
                     sh 'pyinstaller -F sources/prog.py'
+                    echo "${env.WORKSPACE}"
                 }
             }
             post {
