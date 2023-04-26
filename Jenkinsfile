@@ -34,7 +34,6 @@ pipeline {
             agent any
             steps {
                 echo "${env.WORKSPACE}"
-                echo "${env.BUILD_ID}"
             }
         }
 
