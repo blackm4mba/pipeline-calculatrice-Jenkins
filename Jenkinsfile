@@ -24,13 +24,12 @@ pipeline {
             steps {
                 dir(path: env.BUILD_ID) {
                     unstash(name: 'compiled-results')
-                    sh 'mkdir sources/dist'
                     sh 'pyinstaller -F sources/prog.py'
                 }
             }
             post {
                 success {
-                    archiveArtifacts "${env.BUILD_ID}/sources/dist/prog"
+                    archiveArtifacts "${env.BUILD_ID}/dist/prog"
                 }
             }
         }
