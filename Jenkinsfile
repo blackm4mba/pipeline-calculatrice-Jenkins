@@ -24,6 +24,7 @@ pipeline {
             steps {
                 dir(path: env.BUILD_ID) {
                     unstash(name: 'compiled-results')
+                    sh 'mkdir sources/dist'
                     sh 'pyinstaller -F sources/prog.py'
                 }
             }
